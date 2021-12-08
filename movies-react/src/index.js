@@ -14,6 +14,7 @@ import LoginPage from "./pages/loginPage";
 import AuthProvider from "./contexts/authContext";
 import PrivateRoute from "./components/privateRoute/index";
 import AuthHeader from "./components/authHeader/index";
+import SignUpPage from "./pages/signUpPage";
 
 
 const queryClient = new QueryClient({
@@ -36,6 +37,7 @@ const App = () => {
         <MoviesContextProvider>
             {" "}
             <Switch>
+            <Route path="/signup" component={SignUpPage} />
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
             <Route path="/reviews/:id" component={MovieReviewPage} />
         <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
