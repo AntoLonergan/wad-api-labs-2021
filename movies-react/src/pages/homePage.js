@@ -4,34 +4,18 @@ import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getMovies} from '../api/tmdb-api'
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import { useContext} from 'react';
+import { MoviesContext } from './moviesContext';
 
 
-const HomePage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+export const HomePage = () => {
+  const context = useContext(MoviesContext);
+  return <>
+      <h2>Movies Data </h2>
+      <div>
+          {context.movies.results.map(movie => { return <>{movie.id},{movie.title}<br /></> })}
+      </div>
+  </>
+}
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
-  if (isError) {
-    return <h1>{error.message}</h1>
-  }  
-  const movies = data.results;
-
-  // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
-
-  return (
-    <PageTemplate
-      title="Discover Movies"
-      movies={movies}
-      action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
-      }}
-    />
-);
-};
-
-export default HomePage;
+return HomePage;

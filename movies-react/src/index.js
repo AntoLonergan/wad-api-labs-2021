@@ -15,6 +15,7 @@ import AuthProvider from "./contexts/authContext";
 import PrivateRoute from "./components/privateRoute/index";
 import AuthHeader from "./components/authHeader/index";
 import SignUpPage from "./pages/signUpPage";
+import MovieProvider1 from "./contexts/moviesContext1";
 
 
 const queryClient = new QueryClient({
@@ -34,6 +35,7 @@ const App = () => {
       <AuthProvider>
           <AuthHeader />
         <SiteHeader />
+        <MovieProvider1>
         <MoviesContextProvider>
             {" "}
             <Switch>
@@ -45,8 +47,9 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Redirect from="*" to="/" />
-        </Switch>
+        </Switch>        
         </MoviesContextProvider>
+        </MovieProvider1>
         </AuthProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
