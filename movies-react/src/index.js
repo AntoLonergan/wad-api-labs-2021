@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false
     },
   },
-});
+} );
 
 const App = () => {
   return (
@@ -44,8 +44,8 @@ const App = () => {
             <Route path="/reviews/:id" component={MovieReviewPage} />
         <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
         <Route path="/movies/:id" component={MoviePage} />
-        <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
+        <Route exact path="/" component={HomePage} />
         <Redirect from="*" to="/" />
         </Switch>        
         </MoviesContextProvider>
